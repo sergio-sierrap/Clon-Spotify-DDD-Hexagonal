@@ -1,9 +1,13 @@
-export class User {
+export class Track {
     id: string;
     name: string;
-    surname: string;
-    username: string;
-    rol: string;
-    email: string;
+    album: string;
+    cover: string;
+    artist: string;
+    trackDuration: number;
+    durationStart: number;
+    durationEnd: number;
     password: string;
+    createdAt: Date;
+    LastUpdateAt: Date;
 }

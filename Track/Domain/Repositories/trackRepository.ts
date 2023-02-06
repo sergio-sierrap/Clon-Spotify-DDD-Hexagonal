@@ -1,11 +1,10 @@
-import { User } from "../Entities/user";
+import { Track } from "../../../Track/Domain/Entities/track";
 
-export interface UserRepository {
-    getAll(): Promise<User[]>;
-    getById(id: string): Promise<User>;
-    getByEmail(email: string): Promise<User>
-    getByUsername(username: string): Promise<User>
-    create(user: User): Promise<User>;
-    update(user: User): Promise<User>
-    delete(user: User): Promise<void>
+export interface TrackRepository {
+    getTrackById(id: string): Promise<Track>;
+    getTracksByName(name: string): Promise<Track>
+    getTracksByArtist(artist: string): Promise<Track>
+    createTrack(track: Track): Promise<Track>;
+    updateTrack(track: Track): Promise<Track>
+    deleteTrack(track: Track): Promise<void>
 }

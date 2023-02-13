@@ -1,4 +1,4 @@
-import { User } from '../../Domain/Entities/user';
+import User from '../../Domain/Entities/user';
 import { UserRepository } from '../../Domain/Repositories/userRepository';
 
 export class userCreatorUseCase {

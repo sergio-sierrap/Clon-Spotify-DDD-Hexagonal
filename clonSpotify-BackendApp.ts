@@ -1,12 +1,12 @@
-import { Server } from "./src/Config/Server/expressConfig"
+import { ExpressServer } from "./src/Config/Server/expressConfig"
 
 export class ClonSpotifyBackendApp {
-    server?: Server
+    server?: ExpressServer
 
     async start (): Promise<void> {
 
         const port: string = process.env.PORT!
-        this.server = new Server(port)
+        this.server = new ExpressServer(port)
         return await this.server.listen()
     }
 

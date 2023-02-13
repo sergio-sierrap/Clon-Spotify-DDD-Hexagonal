@@ -1,7 +1,7 @@
 import express from 'express'
 import http from 'http'
 
-export class Server {
+export class ExpressServer {
     private readonly _port: string
     private readonly _app: express.Express
     private _httpServer?: http.Server
@@ -18,9 +18,8 @@ export class Server {
         return await new Promise(resolve => {
             this._httpServer = this._app.listen(this._port, () => {
                 console.log(
-                    `Clon-Spotify Backend App is running at http://localhost:${this._port}`
+                    `- Server connection: Succesfully! Running at http://localhost:${this._port}`
                 ),
-                console.log('   press CTRL-C to stop\n')
                 resolve()
             })
         })

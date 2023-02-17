@@ -1,6 +1,7 @@
 import mongoose, {ConnectOptions} from 'mongoose'
+import { DatabaseContract } from './DatabaseContract'
 
-export class MongoDatabase {
+export class MongoDatabase implements DatabaseContract {
     private readonly _mongodb_uri: string
     private readonly _mongodb_config_options: ConnectOptions
 

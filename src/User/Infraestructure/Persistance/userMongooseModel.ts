@@ -15,7 +15,7 @@ const userSchema = new Schema<User>(
         username: {
             type: String
         },
-        role: {
+        suscription: {
             type: String
         },
         email: {

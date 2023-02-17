@@ -1,15 +1,21 @@
-import { MongoDatabase } from "./src/Config/Database/mongodbConfig"
+import { DatabaseContract } from "Config/Database/DatabaseContract"
+//import { MongoDatabase } from "./src/Config/Database/mongodbConfig"
+import * as awilix from 'awilix';
 
 export class ClonSpotifyDatabase {
-    database?: MongoDatabase
+    private _database?: DatabaseContract;
+
+    constructor(mongoDatabase: DatabaseContract) {
+        this._database = mongoDatabase
+    }
 
     async start (): Promise<void> {
-        const mongodb_uri: string = process.env.MONGODB_URI!
-        this.database = new MongoDatabase(mongodb_uri)
-        return await this.database.connect()
+        //const mongodb_uri: string = process.env.MONGODB_URI!
+        //this._database = new MongoDatabase(mongodb_uri)
+        return await this._database?.connect()
     }
 
     async stop (): Promise<void> {
-        return await this.database?.disconnect()
+        return await this._database?.disconnect()
     }
 }

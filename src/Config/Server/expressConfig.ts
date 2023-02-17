@@ -1,17 +1,20 @@
-import express from 'express'
+import express, { Application } from 'express'
+import cors from 'cors'
 import http from 'http'
+import { RouterApiV1 } from './routesApi_V1_Config'
 
 export class ExpressServer {
     private readonly _port: string
     private readonly _app: express.Express
     private _httpServer?: http.Server
 
-    constructor (port: string) {
-        this._port = port
-        this._app = express()
-        this._app.use(express.json())
-        this._app.use(express.urlencoded({extended:false}))
-
+    constructor (port: string, router: RouterApiV1) {
+        this._port = port;
+        this._app = express();
+        this._app.use(cors());
+        this._app.use(express.json());
+        this._app.use(express.urlencoded({extended:false}));
+        router.addRoutesToServer(this._app)
     }
 
     async listen (): Promise<void> {

@@ -3,14 +3,10 @@ import  userModel  from './userMongooseModel';
 import { UserRepository } from "User/Domain/Repositories/userRepository";
 
 export class UserMongodbRepository implements UserRepository {
-    getUserById(id: string): Promise<User> {
-        throw new Error("Method not implemented.");
-    }
-    getUserByEmail(email: string): Promise<User> {
-        throw new Error("Method not implemented.");
-    }
-    getUserByUsername(username: string): Promise<User> {
-        throw new Error("Method not implemented.");
+
+    async getUserByUsername(user: User): Promise<User> {
+        const foundUser = await userModel.findById(user.username);
+        return foundUser!;
     }
     async create(user: User): Promise<User> {
         const createdUser = await userModel.create(user);

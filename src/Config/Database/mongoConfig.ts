@@ -1,12 +1,12 @@
 import mongoose, {ConnectOptions} from 'mongoose'
 import { DatabaseContract } from './DatabaseContract'
 
-export class MongoDatabase implements DatabaseContract {
-    private readonly _mongodb_uri: string
-    private readonly _mongodb_config_options: ConnectOptions
+export class MongoConfig implements DatabaseContract {
+    private readonly _mongodb_uri: string;
+    private readonly _mongodb_config_options: ConnectOptions;
 
-    constructor (mongodb_uri: string) {
-        this._mongodb_uri = mongodb_uri
+    constructor (mongodb_uri: string = process.env.MONGODB_URI!) {
+        this._mongodb_uri = mongodb_uri;
         this._mongodb_config_options = {
             useNewUrlParser: true,
             useUnifiedTopology: true
@@ -16,9 +16,9 @@ export class MongoDatabase implements DatabaseContract {
     async connect (): Promise<void> {
         return await new Promise((resolve, reject) => {
             try{
-                mongoose.set("strictQuery", false);
+                mongoose.set("strictQuery", false)
                 mongoose.connect(this._mongodb_uri, this._mongodb_config_options)
-                mongoose.connection.on('connected', ()=>{
+                mongoose.connection.on('connected', () => {
                     console.log(`- Database connection: Succesfully!`)
                     resolve();
                 })
@@ -28,7 +28,7 @@ export class MongoDatabase implements DatabaseContract {
                 reject(error)
             }
         })
-    }
+    } 
 
     async disconnect (): Promise<void> {
         return await new Promise((resolve, reject) => {
@@ -44,4 +44,4 @@ export class MongoDatabase implements DatabaseContract {
             }
         })
     }
-}
+} 

@@ -2,11 +2,11 @@
   "name": "clon-spotify-backend-ddd-hexagonal-architecture",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/app.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc --build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon dist/clonSpotify-Start.js",
+    "start": "nodemon dist/index.js",
     "start-server": "",
     "start-app": ""
   },

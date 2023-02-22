@@ -1,15 +1,13 @@
 import dotenv, { DotenvConfigOptions } from 'dotenv'
+import { EnvContract } from './EnvContract'
 
-export class DotenvEnv {
-    private readonly _dotenv_path: string
-    private readonly _dotenv_config: DotenvConfigOptions
+export class DotenvConfig implements EnvContract {
+    private readonly _dotenv_config: DotenvConfigOptions;
 
-    constructor (path: string) {
-        this._dotenv_path = path
+    constructor () {
         this._dotenv_config = {
-            path: this._dotenv_path,
             encoding: "latin1",
-            debug: true
+            debug: false
         } as DotenvConfigOptions
     }
 
@@ -26,4 +24,4 @@ export class DotenvEnv {
             }
         })
     }
-}
+} 

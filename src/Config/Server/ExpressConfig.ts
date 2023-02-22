@@ -1,20 +1,23 @@
-import express, { Application } from 'express'
+import express from 'express'
 import cors from 'cors'
 import http from 'http'
-import { RouterApiV1 } from './routesApi_V1_Config'
+import { ServerContract } from './ServerContract'
+import { RouterContract } from './RouterContract'
 
-export class ExpressServer {
+export class ExpressConfig implements ServerContract {
     private readonly _port: string
     private readonly _app: express.Express
+    private readonly _routes: RouterContract
     private _httpServer?: http.Server
 
-    constructor (port: string, router: RouterApiV1) {
+    constructor (port: string = process.env.PORT!, router: RouterContract) {
         this._port = port;
         this._app = express();
         this._app.use(cors());
         this._app.use(express.json());
         this._app.use(express.urlencoded({extended:false}));
-        router.addRoutesToServer(this._app)
+        this._routes = router;
+        this._routes.addRouterToServer(this._app)
     }
 
     async listen (): Promise<void> {
@@ -41,5 +44,4 @@ export class ExpressServer {
             return resolve()
         })
     }
-
 }

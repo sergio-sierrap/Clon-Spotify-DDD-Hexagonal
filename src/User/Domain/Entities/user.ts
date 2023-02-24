@@ -3,7 +3,7 @@ export default interface User {
     name: string;
     lastname: string;
     username: string;
-    suscription: "Individual" | "Duo" | "Family" | "Student";
+    subscription: "Individual" | "Duo" | "Family" | "Student";
     email: string;
     password: string;
     isDeleted: boolean;

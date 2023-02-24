@@ -1,8 +1,8 @@
-import  User  from "User/Domain/Entities/user";
+import  User  from "../../../User/Domain/Entities/user";
 import  userModel  from './userMongooseModel';
-import { UserRepository } from "User/Domain/Repositories/userRepository";
+import { UserRepository } from "../../../User/Domain/Repositories/userRepository";
 
-export class UserMongodbRepository implements UserRepository {
+export class UserMongoPersistance implements UserRepository {
 
     async getUserByUsername(user: User): Promise<User> {
         const foundUser = await userModel.findById(user.username);
@@ -10,6 +10,8 @@ export class UserMongodbRepository implements UserRepository {
     }
     async create(user: User): Promise<User> {
         const createdUser = await userModel.create(user);
+        console.log(createdUser);
+        console.log(user);
         return createdUser;
     }
     async update(user: User): Promise<User> {
@@ -23,4 +25,4 @@ export class UserMongodbRepository implements UserRepository {
     
 }
 
-export default UserMongodbRepository;
+export default UserMongoPersistance;

@@ -3,6 +3,7 @@ import cors from 'cors'
 import http from 'http'
 import { ServerContract } from './ServerContract'
 import { RouterContract } from './RouterContract'
+import bodyParser from 'body-parser'
 
 export class ExpressConfig implements ServerContract {
     private readonly _port: string
@@ -15,7 +16,15 @@ export class ExpressConfig implements ServerContract {
         this._app = express();
         this._app.use(cors());
         this._app.use(express.json());
-        this._app.use(express.urlencoded({extended:false}));
+        this._app.use(bodyParser.json());
+        this._app.use(express.urlencoded({extended:true}));
+        this._app.use((req, res, next) => {
+            console.log(`Incoming request for ${req.path} => Path`);
+            console.log(`Incoming request for ${req.method} => Method`);
+            const requestBody = req.body
+            JSON.stringify(requestBody, null, 4)
+            next();
+        });
         this._routes = router;
         this._routes.addRouterToServer(this._app)
     }

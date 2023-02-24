@@ -1,5 +1,5 @@
-import mongoose, { model, Schema } from 'mongoose'
-import User from 'User/Domain/Entities/user';
+import { model, Schema } from 'mongoose'
+import User from '../../../User/Domain/Entities/user';
 
 const userSchema = new Schema<User>(
     {
@@ -15,7 +15,7 @@ const userSchema = new Schema<User>(
         username: {
             type: String
         },
-        suscription: {
+        subscription: {
             type: String
         },
         email: {
@@ -31,9 +31,10 @@ const userSchema = new Schema<User>(
     },
     {
         versionKey: false,
-        timestamps: true
+        timestamps: true,
+        _id: false
     }
 );
 
-const userModel = model<User>('User', userSchema);
+const userModel = model("User", userSchema);
 export default userModel;

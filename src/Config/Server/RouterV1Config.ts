@@ -1,4 +1,5 @@
 import express, { Application } from 'express'
+import {userRoute} from '../../User/Infraestructure/ServerHttp/Routes/userRoute';
 import { RouterContract } from './RouterContract';
 
 export class RouterV1Config implements RouterContract {
@@ -10,10 +11,10 @@ export class RouterV1Config implements RouterContract {
 
     public addRouterToServer(app: Application): void {
         app.use('/api/v1', this._router);
-       /* this._router.use('/auth', authRoute);
+    /*  this._router.use('/auth', authRoute);
         this._router.use('/storage', storageRoute);
-        this._router.use('/tracks', trackRoute);
-        this._router.use('/users', userRoute);*/
+        this._router.use('/tracks', trackRoute);    */
+        this._router.use('/users', userRoute);
         console.log(`- Routes [V1] connection: Succesfully!`)
     }
 }
